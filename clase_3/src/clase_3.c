@@ -1,15 +1,19 @@
 #include <stdio.h>
 #include <stdlib.h>
-#define CONTADOR_ITERA 5;
+#define CONTADOR_ITERA 5
 
 int calculaMaximoMinimo(int contador, int *max, int *min );
 
 int main(void) {
 	int calculoMaximo;
 	int calculoMinimo;
+	int contador;
+	int *contador1;
+	printf("ALGO %d y contador %d contador %d",contador,&contador,*contador1);
+	printf("ingrese un numero");
+	scanf("%d",&contador);
 
-
-	calculaMaximoMinimo(CONTADOR_ITERA,&calculoMaximo, &calculoMinimo);
+	calculaMaximoMinimo(contador,&calculoMaximo, &calculoMinimo);
 	printf("el maximo es %d",calculoMaximo);
 	printf("el minimo es %d",calculoMinimo);
 
@@ -26,7 +30,7 @@ int calculaMaximoMinimo(int contador, int *max, int *min )
 	int num;
 	int retorno = -1;
 
-	if(contador>0 && *min != NULL && *min !=NULL){
+	if(contador>0 && *min != NULL && *max !=NULL){
 
 	for(i=0; i<contador;i++)
 	{
@@ -42,8 +46,8 @@ int calculaMaximoMinimo(int contador, int *max, int *min )
 		*max=maximo;
 
 
-		return retorno;
-	}
+		retorno =0;
+		}
 	}
 
 	return retorno;
