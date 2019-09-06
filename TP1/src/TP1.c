@@ -52,12 +52,12 @@ int main(void) {
 
                                    break;
                                }
-                       }
+                       }	    printf("numero %d",n1);
 				break;
 			default:
 				break;
 		}
-	    printf("numero",n1);
+
 
 	} while (opcion== 5);
 }
