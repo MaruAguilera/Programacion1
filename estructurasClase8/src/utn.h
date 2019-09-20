@@ -1,4 +1,10 @@
-
+struct datosPersonales{
+	char nombre[20];
+	char apellido[20];
+	char calle[20];
+	int numero;
+	int isEmpy;
+};
 int getInt(char mensaje[]);
 float getFloat(char mensaje[]);
 char getChar(char mensaje[]);
