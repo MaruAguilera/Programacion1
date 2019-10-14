@@ -10,6 +10,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdio_ext.h>
 
 int main(void) {
 
@@ -30,10 +31,10 @@ int main(void) {
     do {
 		float opcion;
 
-	    while(scanf("%f",&opcion)==0 ||(opcion<1 ||opcion>5)){
+	    while(scanf("%f",&opcion)==0 ||(opcion<1 ||opcion>5) || getInt()==0){
 
             {
-            fflush(stdin);
+            __fpurge(stdin);
             printf("\n error, ingrese opcion entre 1 y 5\n");
             }
 
@@ -45,7 +46,7 @@ int main(void) {
                 while(scanf("%f",&auxiliar)==0)
                        {
                            printf("\n error ingrese numero\n");
-                           fflush(stdin);
+                           __fpurge(stdin);
                            if(scanf("%f",&auxiliar)==1)
                                {
                                    n1=auxiliar;
@@ -60,4 +61,21 @@ int main(void) {
 
 
 	} while (opcion== 5);
+}
+
+
+float getInt(float *pnumero)
+{
+    float auxiliar;
+    while(scanf("%f",&auxiliar)==0)
+        {
+            printf("\n error ingrese numero\n");
+            __fpurge(stdin);
+            if(scanf("%f",&auxiliar)==1)
+                {
+                    *pnumero=auxiliar;
+                    break;
+                }
+        }
+        return auxiliar;
 }

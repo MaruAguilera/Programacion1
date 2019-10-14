@@ -24,6 +24,36 @@ utn_getFecha
 *param max Tamaño= elementos+1(\0)
 *
 ***************************/
+int utn_getInt(  int* pInt, char* msg,
+                    char msgErr[],int min, int max,
+                    int reintentos)
+
+{
+    int retorno=-1;
+    int buffer;
+    if( pInt != NULL &&  msg != NULL && msgErr != NULL &&
+         min <= max && reintentos >= 0)
+    {
+        do
+        {
+            reintentos--;
+            printf("%s",msg);
+            if( getInt(&buffer) == 0 &&
+                buffer >= min && buffer <= max)
+            {
+                retorno = 0;
+                *pInt = buffer;
+                break;
+            }
+            else
+            {
+                printf("%s",msgErr);
+            }
+        }while(reintentos >= 0);
+    }
+    return retorno;
+}
+
 
 int getString(char* msg, char* msgError, int min, int max, int* reintentos, char* resultado)
 {
@@ -99,12 +129,12 @@ int isValidName(char* stringRecibido)   //si fuera un numero podrìa necesitar p
 }
 
 //-----------------------------------------
-int utn_getUnsignedInt(  char* msg,char* msgError,int minSize,int maxSize,int min,int max,int reintentos,int* input)
+int utn_getUnsignedInt(  char* mensaje,char* mensajeError,int minSize,int maxSize,int min,int max,int reintentos,int* input)
 {
     int retorno=-1;
     char bufferStr[maxSize];
 
-    if(msg!=NULL && msgError!=NULL && minSize<maxSize && min<max && reintentos>=0 && input!=NULL)
+    if(mensaje!=NULL && mensajeError!=NULL && minSize<maxSize && min<max && reintentos>=0 && input!=NULL)
     {
         do
         {
@@ -275,36 +305,7 @@ int isValidTelephone(char* stringRecibido)
     return retorno;
 }
 //***************************************
-int utn_getDNI(char* msg, char* msgError, int minSize, int maxSize, int reintentos, char* input)
-{
-    maxSize=11; //con puntos
-    minSize=8;  // sin puntos
-    int retorno=-1;
-    char bufferStr[maxSize];
 
-    if(msg!=NULL && msgError!=NULL && minSize<maxSize && reintentos>=0 && input!=NULL)
-    {
-        do
-        {
-            if(!getString(msg,msgError,minSize,maxSize,&reintentos,bufferStr)) //==0 sin errores !0
-            {
-                if(isValidDNI(bufferStr)==1)
-                {
-                    strncpy(input,bufferStr,maxSize);
-                    retorno=0;
-                    break;
-                }
-                else
-                {
-                    printf("%s 2",msgError);
-                    reintentos--;
-                }
-            }
-        }
-        while(reintentos>=0);
-    }
-    return retorno;
-}
 
 int isValidDNI(char* stringRecibido)
 {
