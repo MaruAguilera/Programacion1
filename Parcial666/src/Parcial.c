@@ -22,8 +22,8 @@ int pedidos_procesados(Pedido arrayPedidos[], int sizePedidos, Cliente arrayClie
 
 int main(void) {
 	int opcion;
-	int contadorIdClientes=0;
-	int contadorIdPedidos=0;
+	int contadorIdClientes;
+	int contadorIdPedidos;
 	Cliente arrayClientes[NUMERO_CLIENTES];
 	Pedido arrayPedidos[NUMERO_PEDIDO];
 	cliente_Inicializar(arrayClientes,NUMERO_CLIENTES);
