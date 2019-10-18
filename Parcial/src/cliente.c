@@ -53,12 +53,12 @@ int cliente_alta(Cliente arrayClientes[], int size, int* contadorID)
             arrayClientes[posicion].idCliente=*contadorID;
             arrayClientes[posicion].isEmpty=0;
             utn_getString("\nIngrese el nombre el Cliente ","\nError, nombre no valido",1,TEXT_SIZE,5,&arrayClientes[posicion].nombreEmpresa);
-            utn_getString("\nIngrese la direccion","\nError, direccion no valida",1,TEXT_SIZE,1,&arrayClientes[posicion].direccion);
+            utn_getAlfanumerico("\nIngrese la direccion","\nError, direccion no valida",1,TEXT_SIZE,1,&arrayClientes[posicion].direccion);
             utn_getString("\nIngrese la localidad","\nError, localidad no valida",1,TEXT_SIZE,1,&arrayClientes[posicion].localidad);
             utn_getIntConSigno("\nIngrese el CUIT ","\nError, CUIT no valido",1,20,0,10,1,&arrayClientes[posicion].cuit);
 
-            printf("\nID \tNombre Empresa \tDireccion \tLocalidad \tCUIT");
-            printf("\n%d, \t%s \t\t%s \t\t%s \t\t%d", arrayClientes[posicion].idCliente, arrayClientes[posicion].nombreEmpresa, arrayClientes[posicion].direccion, arrayClientes[posicion].localidad, arrayClientes[posicion].cuit);
+            printf("\nID \tNombreEmpresa \t\tDireccion \tLocalidad \tCUIT");
+            printf("\n %d, \t\t %s \t\t %s \t\t %s \t\t %d", arrayClientes[posicion].idCliente, arrayClientes[posicion].nombreEmpresa, arrayClientes[posicion].direccion, arrayClientes[posicion].localidad, arrayClientes[posicion].cuit);
             retorno=0;
         }
     }
@@ -177,7 +177,7 @@ int cliente_listar(Cliente arrayClientes[], int size)
             if(arrayClientes[i].isEmpty==1){continue;}
 
             else{
-            	printf("\n%d \t%s \t%s \t%s \t%d",arrayClientes[i].idCliente, arrayClientes[i].nombreEmpresa, arrayClientes[i].direccion, arrayClientes[i].localidad, arrayClientes[i].cuit);
+            	printf("\n%d \t\t%s \t\t%s \t\t%s \t\t%d",arrayClientes[i].idCliente, arrayClientes[i].nombreEmpresa, arrayClientes[i].direccion, arrayClientes[i].localidad, arrayClientes[i].cuit);
             }
 
         }
@@ -207,6 +207,19 @@ int cliente_listar_pendiente(Cliente arrayClientes[], int size, Pedido arrayPedi
     }
     return retorno;
 }
+
+
+/*void setCliente(Cliente arrayClientes[],char empresa[],int posicion, int cuit ,char localidad[],char direccion[] )
+{							//ID:1 - Telefonica - 30-11223344-5 - CABA - Lima 1234
+
+
+    strcpy(arrayClientes[posicion].nombreEmpresa,empresa);
+    arrayClientes[posicion].cuit=cuit;
+    strcpy(arrayClientes[posicion].localidad,localidad);
+    strcpy(arrayClientes[posicion].direccion,direccion);
+
+
+}**/
 
 
 

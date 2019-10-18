@@ -79,7 +79,7 @@ int pedido_listar(Pedido arrayPedidos[], int size)
             if(arrayPedidos[i].isEmpty==1){continue;}
 
             else{
-                printf("\n%d \t\t%d \t\t%s", arrayPedidos[i].idPedido, arrayPedidos[i].kgTotales, arrayPedidos[i].estado);
+                printf("\n %d \t\t %d \t\t %s", arrayPedidos[i].idPedido, arrayPedidos[i].kgTotales, arrayPedidos[i].estado);
             }
         }
         printf("\n#####################################################\n");
@@ -164,6 +164,46 @@ int contadorDePendientes(Pedido arrayPedidos[], int size, int idCliente)
 	}
 	return TotalPendientes;
 }
+int contadorDeCompletados(Pedido arrayPedidos[], int size, int idCliente)
+{
+	int i;
+	int TotalCompletados = 0;
+	if(arrayPedidos!= NULL && size > 0)
+	{
+		for(i=0;i < size; i++)
+		{
+			if(arrayPedidos[i].isEmpty==1) continue;
+			{
+			   if(arrayPedidos[i].idCliente == idCliente && strcmp(arrayPedidos[i].estado,"Completado") == 0)
+			   {
+				   TotalCompletados++;
+			   }
+			}
+		}
+	}
+	return TotalCompletados;
+}
+
+int contadorDePedidos(Pedido arrayPedidos[], int size, int idCliente)
+{
+	int i;
+	int Total = 0;
+	if(arrayPedidos!= NULL && size > 0)
+	{
+		for(i=0;i < size; i++)
+		{
+			if(arrayPedidos[i].isEmpty==1) continue;
+			{
+			   if(arrayPedidos[i].idCliente == idCliente && arrayPedidos[i].idPedido!=0)
+			   {
+				   Total++;
+			   }
+			}
+		}
+	}
+	return Total;
+}
+
 
 int pedidos_pendientes(Pedido arrayPedidos[], int sizePedidos, Cliente arrayClientes[], int sizeClientes) {
 	int retorno = -1;
@@ -175,7 +215,7 @@ int pedidos_pendientes(Pedido arrayPedidos[], int sizePedidos, Cliente arrayClie
 		if(strcmp(arrayPedidos[i].estado, "Pendiente") == 0){
 			for(j=0;j < sizeClientes; j++){
 				if(arrayClientes[j].idCliente == arrayPedidos[i].idCliente){
-					printf("\n%d \t%s \t\t%d",arrayClientes[j].cuit, arrayClientes[j].direccion, arrayPedidos[i].kgTotales);
+					printf("\n%d \t\t %s \t\t %d",arrayClientes[j].cuit, arrayClientes[j].direccion, arrayPedidos[i].kgTotales);
 					retorno = 0;
 				}
 			}
@@ -194,11 +234,33 @@ int pedidos_procesados(Pedido arrayPedidos[], int sizePedidos, Cliente arrayClie
 		if(strcmp(arrayPedidos[i].estado, "Completado") == 0){
 			for(j=0;j < sizeClientes; j++){
 				if(arrayClientes[j].idCliente == arrayPedidos[i].idCliente){
-					printf("\n%d \t%s \t\t%d \t\t%d ",arrayClientes[j].cuit, arrayClientes[j].direccion, arrayPedidos[i].tipo_plastico.HDPE, arrayPedidos[i].tipo_plastico.LDPE, arrayPedidos[i].tipo_plastico.PP);
+					printf("\n%d \t\t %s \t\t %d \t\t %d \t\t %d ",arrayClientes[j].cuit, arrayClientes[j].direccion, arrayPedidos[i].tipo_plastico.HDPE, arrayPedidos[i].tipo_plastico.LDPE, arrayPedidos[i].tipo_plastico.PP);
 					retorno = 0;
 				}
 			}
 		}
 	}
 	return retorno;
+}
+
+int contadorDeKgReciclados(Pedido arrayPedidos[], int size, int idCliente)
+{
+	int i;
+	int kgReciclados = 0;
+	int totalPlastico;
+	if(arrayPedidos!= NULL && size > 0)
+	{
+		for(i=0;i < size; i++)
+		{
+			if(arrayPedidos[i].isEmpty==1) continue;
+			{
+			   if(arrayPedidos[i].idCliente == idCliente )
+			   {
+				   totalPlastico = arrayPedidos[i].tipo_plastico.HDPE + arrayPedidos[i].tipo_plastico.LDPE + arrayPedidos[i].tipo_plastico.PP;
+				   kgReciclados = kgReciclados + totalPlastico;
+			   }
+			}
+		}
+	}
+	return kgReciclados;
 }

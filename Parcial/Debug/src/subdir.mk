@@ -6,18 +6,21 @@
 C_SRCS += \
 ../src/Parcial.c \
 ../src/cliente.c \
+../src/informes.c \
 ../src/pedido.c \
 ../src/utn.c 
 
 OBJS += \
 ./src/Parcial.o \
 ./src/cliente.o \
+./src/informes.o \
 ./src/pedido.o \
 ./src/utn.o 
 
 C_DEPS += \
 ./src/Parcial.d \
 ./src/cliente.d \
+./src/informes.d \
 ./src/pedido.d \
 ./src/utn.d 
 

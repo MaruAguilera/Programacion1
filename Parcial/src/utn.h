@@ -9,3 +9,7 @@ int isValidSignedNumber(char* stringRecibido);
 int utn_getIntSinSigno(  char* msg,char* msgError,int minSize,int maxSize,int min,int max,int reintentos,int* input);
 int isValidNumber(char* stringRecibido);
 int isValidChar(char charRecibido);
+int isValidAlphanumeric(char* stringRecibido);
+int utn_getAlfanumerico(char* msg, char* msgError, int minSize, int maxSize, int reintentos, char* input);
+int utn_getCUIT(char* msg, char* msgError, int reintentos, char* input);
+int isValidCUIT(char* stringRecibido);

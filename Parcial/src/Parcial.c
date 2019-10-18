@@ -13,6 +13,7 @@
 #include "cliente.h"
 #include "pedido.h"
 #include "utn.h"
+#include "informes.h"
 #define NUMERO_CLIENTES 100
 #define NUMERO_PEDIDO 1000
 
@@ -21,6 +22,7 @@ int pedidos_pendientes(Pedido arrayPedidos[], int sizePedidos, Cliente arrayClie
 int pedidos_procesados(Pedido arrayPedidos[], int sizePedidos, Cliente arrayClientes[], int sizeClientes);
 
 int main(void) {
+
 	int opcion;
 	int contadorIdClientes=0;
 	int contadorIdPedidos=0;
@@ -30,7 +32,7 @@ int main(void) {
 	pedido_Inicializar(arrayPedidos,NUMERO_PEDIDO);
 
 	do {
-		utn_getIntSinSigno("\n\n1) Alta \n2) Modificar \n3) Baja \n4) Crear Pedido \n5)Procesar Residuos \n6)Imprimir Clientes \n7)Imprimir pedidos pendientes \n8)Imprimir pedidos procesados \n","\nError, numero invalido",1,sizeof(int),1,9,1,&opcion);
+		utn_getIntSinSigno("\n\n1) Alta \n2) Modificar \n3) Baja \n4) Crear Pedido \n5)Procesar Residuos \n6)Imprimir Clientes \n7)Imprimir pedidos pendientes \n8)Imprimir pedidos procesados \n9)Informes \n","\nError, numero invalido",1,sizeof(int),1,10,1,&opcion);
 		switch (opcion) {
 			case 1:
 				if(cliente_alta(arrayClientes,NUMERO_CLIENTES,&contadorIdClientes)==0)
@@ -92,11 +94,20 @@ int main(void) {
 				}
 				break;
 			case 9:
-				printf("\nSaliste del Programa");
+				printf("\nINFORMES");
+
+				cliente_conMasPedidos_pendiente(arrayClientes, NUMERO_CLIENTES, arrayPedidos, NUMERO_PEDIDO);
+				cliente_conMasPedidos_completados(arrayClientes, NUMERO_CLIENTES, arrayPedidos, NUMERO_PEDIDO);
+				cliente_conMasPedidos(arrayClientes, NUMERO_CLIENTES, arrayPedidos, NUMERO_PEDIDO);
+				cliente_conMasKg(arrayClientes, NUMERO_CLIENTES, arrayPedidos, NUMERO_PEDIDO);
+				cliente_conMenosKg(arrayClientes, NUMERO_CLIENTES, arrayPedidos, NUMERO_PEDIDO);
+				cliente_conMasDe1000kg(arrayClientes, NUMERO_CLIENTES, arrayPedidos, NUMERO_PEDIDO);
+				cliente_conMenosDe100kg(arrayClientes, NUMERO_CLIENTES, arrayPedidos, NUMERO_PEDIDO);
+
 				break;
 		}
 
-	} while (opcion!=9);
+	} while (opcion!=10);
 
 
 

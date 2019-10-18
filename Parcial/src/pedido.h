@@ -23,6 +23,12 @@ typedef struct
 
 
 }Pedido;
-
+int pedido_Inicializar(Pedido arrayPedido[], int size);
+int pedido_alta(Pedido arrayPedido[], int size, int* contadorID);
+int pedido_buscarEmpty(Pedido arrayPedidos[], int size, int* posicion);
+int pedido_listar(Pedido arrayPedidos[], int size);
+int pedido_ingresarkg(Pedido arrayPedidos[], int sizeArray);
+int pedido_buscarID(Pedido arrayPedidos[], int size, int valorBuscado, int* posicion);
 int pedido_buscarEmpty(Pedido arrayPedido[], int size, int* posicion);
 int contadorDePendientes(Pedido arrayPedidos[],int size, int idCliente);
+int contadorDeCompletados(Pedido arrayPedidos[], int size, int idCliente);
