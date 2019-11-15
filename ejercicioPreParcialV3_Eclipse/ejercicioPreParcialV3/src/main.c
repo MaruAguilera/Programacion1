@@ -30,6 +30,7 @@ int main()
     LinkedList* listaEmpleados;
 
     // Crear lista empledos
+
     //...
 
     // Leer empleados de archivo data.csv
