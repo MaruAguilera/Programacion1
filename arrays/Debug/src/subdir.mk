@@ -4,12 +4,15 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
+../src/ingresoDeDatos.c \
 ../src/maximo.c 
 
 OBJS += \
+./src/ingresoDeDatos.o \
 ./src/maximo.o 
 
 C_DEPS += \
+./src/ingresoDeDatos.d \
 ./src/maximo.d 
 
 
