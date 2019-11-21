@@ -186,7 +186,7 @@ void* ll_get(LinkedList* this, int index)
         nodo=test_getNode(this,index);
         returnAux=nodo->pElement;
     }
-
+    printf("RETURN AUX: ", returnAux);
     return returnAux;
 }
 
@@ -616,39 +616,47 @@ int ll_map(LinkedList* this, void (*pFunc)(void*))
  return retorno;
 }
 
-int ll_count(LinkedList* this, int (*pFunc)(void*,void*), int order)
+//LinkedList* ll_filter(LinkedList* this,int (*pFunc)(void*))
+//{
+//    int i;
+//    LinkedList*newList=NULL;
+//    int len=ll_len(this);
+//    void*pElement;
+//
+//    if(this!=NULL && pFunc!=NULL && len>0)
+//    {
+//        newList=ll_newLinkedList();
+//        for(i=0;i<len;i++)
+//        {
+//            pElement=ll_get(this,i);
+//            if(pFunc(pElement)>0)
+//            {
+//                ll_add(newList,pElement);
+//            }
+//        }
+//    }
+//    return newList;
+//}
+
+int ll_count(LinkedList* this, int (*fn)(void* element))
 {
-    int returnAux =-1;
-    int flagOrdenar = 1;
-    int i;
-    void*pElementAuxiliar;
-    void*pElementI;
-    void*pElementImasUno;
-    int len=ll_len(this);
-    if(this!=NULL && pFunc!=NULL && (order == 0 || order == 1))
-    {
-        while(flagOrdenar==1)
-        {
-            flagOrdenar=0;
-            for(i=0; i<len-1; i++)
-            {
-                pElementI=ll_get(this,i);
-                pElementImasUno=ll_get(this,i+1);
-                if((order==1 && pFunc(pElementI,pElementImasUno)>0) || (order==0 && pFunc(pElementI,pElementImasUno)<0))
-                {
-                    pElementAuxiliar=pElementI;
-                    ll_set(this,i,pElementImasUno);
-                    ll_set(this,i+1,pElementAuxiliar);
-                    flagOrdenar=1;
-                    returnAux=0;
-                }
-            }
+	int i;
+	int count = 0;
+	int len = ll_len(this);
+	void* pElement;
+	int cantidad;
 
-        }
 
-    }
+	if(this!=NULL && len>0){
+		printf("\nCANTIDAD DE ELEMENTOS EN LA LISTA: %d", len);
+		for(i=0; i<len; i++){
+			pElement=ll_get(this,i);
+//			cantidad = fn(pElement);
+			if(pElement==NULL){
 
-    return returnAux;
-
+				printf("\nCANTIDAD %d %d", i, cantidad);
+			}
+		}
+	}
+	return count;
 }
-

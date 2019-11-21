@@ -3,7 +3,7 @@
 #include "LinkedList.h"
 #include "parser.h"
 #include "utn.h"
-//#include "Controller.h"
+#include "Ventas.h"
 
 int controller_loadFromText(char* path , LinkedList* pArrayList)
 {   printf("entro al coso");
@@ -19,4 +19,14 @@ int controller_loadFromText(char* path , LinkedList* pArrayList)
     }
     fclose(pArchivo);
     return retorno;
+}
+
+int controller_count(LinkedList* pArrayList)
+{
+	printf("\nEN EL CONTROLER COUNT");
+	if(pArrayList != NULL){
+		printf("\nla lista no es nula");
+		ll_count(pArrayList, Ventas_Total_Count);
+	}
+	return 0;
 }

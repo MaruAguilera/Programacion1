@@ -1,21 +1,21 @@
-#include "Ventas.h"
-#include "utn.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
+#include "utn.h"
+#include "Ventas.h"
 
 Venta* venta_new()
 {
-    Venta* this;
-    this=malloc(sizeof(Venta));
-    return this;
+	return (Venta*)malloc(sizeof(Venta));
+//    Venta* this;
+//    this=malloc(sizeof(Venta));
+//    return this;
 }
 void Employee_delete(Venta* this)
 {
     free(this);
 }
-Venta* venta_newConParametros(int id,char* fecha,char* tipo,int cantidad, int precio,char cuit)
+Venta* venta_newConParametros(int id,char* fecha,char* tipo,int cantidad, int precio,char* cuit)
 {
 	Venta*pVentas=NULL;
     pVentas=venta_new();
@@ -118,25 +118,43 @@ int Venta_getTipo_Foto(Venta* this,char* nombre)
     return retorno;
 }
 
-int Venta_Count(void* thisA ,void* thisB)
+int Venta_getCantidad_Foto(Venta* this, int* cantidad)
+{
+	int retorno=0;
+	if(this!=NULL && cantidad!=NULL)
+	{
+		printf("\nENTRA A CANTIDAD DE FOTOS?");
+//		printf("\nVENTA: %s, %s, %d", this->Fecha_Venta, this->Tipo_Foto, this->Cantidad);
+//		*cantidad = this->Cantidad;
+	}
+	printf("\nRETORNO: %d", retorno);
+	return retorno;
+}
+
+int Ventas_Total_Count(void* thisA)
 {
     int retorno;
     char NombreThisA[128];
     int count_4R_10x15;
     int count_5R_13x18;
+    int count_foto;
 
-    Venta_getTipo_Foto((Venta*)thisA,NombreThisA);
+    printf("\nTOTAL");
+//    printf("TOTAL: %d", ((Venta*)thisA)->Cantidad);
+//    Venta_getTipo_Foto((Venta*)thisA,NombreThisA);
+    Venta_getCantidad_Foto((Venta*)thisA, &count_foto);
+    printf("\nFOTOS: %d", count_foto);
+//
+//    if(strcmp(NombreThisA,"4R_10x15")==0)
+//    {
+//    	count_4R_10x15++;
+//
+//    }
+//    else if(strcmp(NombreThisA,"5R_13x18")==0)
+//    {
+//    	count_5R_13x18++;
+//    }
 
-    if(strcmp(NombreThisA,"4R_10x15")==0)
-    {
-    	count_4R_10x15++;
-
-    }
-    else if(strcmp(NombreThisA,"5R_13x18")==0)
-    {
-    	count_5R_13x18++;
-    }
-
-    return retorno;
+    return 0;
 }
 

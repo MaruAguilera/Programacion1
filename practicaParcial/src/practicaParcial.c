@@ -8,14 +8,12 @@
 
 int main(void) {
 
-printf("asasdasda\n");
+printf("INICIO\n");
 LinkedList* listaVentas=ll_newLinkedList();
-printf("asasdasda\n");
+printf("LOAD FROM TEXT\n");
 controller_loadFromText("/home/marisa/data.csv",listaVentas);
-printf("asasdasda\n");
-
-
-
+printf("\nANTES DE COTROLLER COUNT\n");
+controller_count(listaVentas);
 
 //return 0;
 }
