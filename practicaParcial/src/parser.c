@@ -32,7 +32,7 @@ int parser_EmployeeFromText(FILE* pFile , LinkedList* pArrayListEmployee)
         {
 
 
-            auxiliarPunteroEmployee = venta_newConParametros(atoi(bufferID_Venta),bufferFecha_Venta,bufferTipo_Foto,atoi(bufferCantidad),atoi(bufferPrecio_Unitario),atoi(bufferCUIT_Cliente));
+            auxiliarPunteroEmployee = venta_newConParametros(bufferID_Venta, bufferFecha_Venta, bufferTipo_Foto, bufferCantidad, bufferPrecio_Unitario, bufferCUIT_Cliente);
             count++;
             //printf("\nFSCANF %s", bufferCantidad);
             {

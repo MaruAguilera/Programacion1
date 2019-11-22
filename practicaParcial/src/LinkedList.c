@@ -186,7 +186,6 @@ void* ll_get(LinkedList* this, int index)
         nodo=test_getNode(this,index);
         returnAux=nodo->pElement;
     }
-    printf("RETURN AUX: ", returnAux);
     return returnAux;
 }
 
@@ -640,23 +639,20 @@ int ll_map(LinkedList* this, void (*pFunc)(void*))
 
 int ll_count(LinkedList* this, int (*fn)(void* element))
 {
+	int retorno;
 	int i;
-	int count = 0;
 	int len = ll_len(this);
-	void* pElement;
-	int cantidad;
+//	void* pElement;
+//	Node* pElement = NULL;
 
+//	Node* nAux = this->pFirstNode;
+//	Venta* venta = nAux->pElement;
 
-	if(this!=NULL && len>0){
+	if(this!=NULL && len>0 && fn != NULL){
 		printf("\nCANTIDAD DE ELEMENTOS EN LA LISTA: %d", len);
 		for(i=0; i<len; i++){
-			pElement=ll_get(this,i);
-//			cantidad = fn(pElement);
-			if(pElement==NULL){
-
-				printf("\nCANTIDAD %d %d", i, cantidad);
-			}
+			retorno = retorno + fn(ll_get(this, i));
 		}
 	}
-	return count;
+	return retorno;
 }

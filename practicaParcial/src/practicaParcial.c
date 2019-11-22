@@ -9,9 +9,12 @@
 int main(void) {
 
 printf("INICIO\n");
-LinkedList* listaVentas=ll_newLinkedList();
+LinkedList* listaVentas = ll_newLinkedList();
 printf("LOAD FROM TEXT\n");
 controller_loadFromText("/home/marisa/data.csv",listaVentas);
+
+//controller_listVentas(listaVentas);
+
 printf("\nANTES DE COTROLLER COUNT\n");
 controller_count(listaVentas);
 

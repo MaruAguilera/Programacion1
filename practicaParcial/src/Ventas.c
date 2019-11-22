@@ -11,28 +11,45 @@ Venta* venta_new()
 //    this=malloc(sizeof(Venta));
 //    return this;
 }
-void Employee_delete(Venta* this)
+Venta* venta_newConParametros(char* idStr,char* fechaStr,char* tipoFotoStr,char* cantidadStr, char* precioStr,char* cuitStr)
 {
-    free(this);
-}
-Venta* venta_newConParametros(int id,char* fecha,char* tipo,int cantidad, int precio,char* cuit)
-{
-	Venta*pVentas=NULL;
-    pVentas=venta_new();
+	Venta* pVentas=NULL;
+	int id = atoi(idStr);
+	int cantidad = atoi(cantidadStr);
+	int precio = atoi(precioStr);
 
-    if( pVentas==NULL ||
-    Venta_setId(pVentas,id)||
-	Venta_setFecha(pVentas,fecha)||
-	Venta_setTipo_Foto(pVentas,tipo) ||
-	Venta_setCantidad(pVentas,cantidad)||
-	Venta_setPrecio_Unitario(pVentas,precio)||
-    Venta_setCUIT_Cliente(pVentas,cuit))
-    {
-        Employee_delete(pVentas);
-        pVentas=NULL;
-    }
+	pVentas = (Venta*)malloc(sizeof(Venta));
+
+	pVentas->ID_Venta = id;
+	strcpy(pVentas->Fecha_Venta, fechaStr);
+	strcpy(pVentas->Tipo_Foto, tipoFotoStr);
+	pVentas->Cantidad = cantidad;
+	pVentas->Precio_Unitario = precio;
+	strcpy(pVentas->CUIT_Cliente, cuitStr);
+
+	return pVentas;
+//    pVentas=venta_new();
+
+//    if( pVentas==NULL ||
+//    Venta_setId(pVentas,id)||
+//	Venta_setFecha(pVentas,fecha)||
+//	Venta_setTipo_Foto(pVentas,tipo) ||
+//	Venta_setCantidad(pVentas,cantidad)||
+//	Venta_setPrecio_Unitario(pVentas,precio)||
+//    Venta_setCUIT_Cliente(pVentas,cuit))
+//    {
+//        Employee_delete(pVentas);
+//        pVentas=NULL;
+//    }
+
+
 
     return pVentas;
+}
+
+void Venta_delete(Venta* this)
+{
+    free(this);
 }
 
 int Venta_setId(Venta* this,int id)
@@ -81,6 +98,7 @@ int Venta_setCantidad(Venta* this,int Cantidad)
     if(this!=NULL && Cantidad>=0)
     {
         this->Cantidad=Cantidad;
+        printf("\nSET CANTIDAD: %d, %d", this->Cantidad, Cantidad);
         retorno=0;
     }
     return retorno;
@@ -123,9 +141,9 @@ int Venta_getCantidad_Foto(Venta* this, int* cantidad)
 	int retorno=0;
 	if(this!=NULL && cantidad!=NULL)
 	{
-		printf("\nENTRA A CANTIDAD DE FOTOS?");
-//		printf("\nVENTA: %s, %s, %d", this->Fecha_Venta, this->Tipo_Foto, this->Cantidad);
-//		*cantidad = this->Cantidad;
+		printf("\nENTRA A CANTIDAD DE FOTOS? %d", this->Cantidad);
+		printf("\nVENTA: %s, %s, %d", this->Fecha_Venta, this->Tipo_Foto, this->Cantidad);
+		*cantidad = this->Cantidad;
 	}
 	printf("\nRETORNO: %d", retorno);
 	return retorno;
@@ -133,17 +151,24 @@ int Venta_getCantidad_Foto(Venta* this, int* cantidad)
 
 int Ventas_Total_Count(void* thisA)
 {
-    int retorno;
-    char NombreThisA[128];
-    int count_4R_10x15;
-    int count_5R_13x18;
-    int count_foto;
+    int retorno = 0;
+    Venta* venta;
+    venta = (Venta*) thisA;
 
-    printf("\nTOTAL");
+//    printf("\nTOTAL");
+
+    if(thisA != NULL && venta->Cantidad >= 0)
+    {
+    	retorno = venta->Cantidad;
+    }
+    else
+    {
+    	retorno = 0;
+    }
 //    printf("TOTAL: %d", ((Venta*)thisA)->Cantidad);
 //    Venta_getTipo_Foto((Venta*)thisA,NombreThisA);
-    Venta_getCantidad_Foto((Venta*)thisA, &count_foto);
-    printf("\nFOTOS: %d", count_foto);
+//    Venta_getCantidad_Foto((Venta*)thisA, &count_foto);
+//    printf("\nFOTOS: %d", count_foto);
 //
 //    if(strcmp(NombreThisA,"4R_10x15")==0)
 //    {
@@ -155,6 +180,6 @@ int Ventas_Total_Count(void* thisA)
 //    	count_5R_13x18++;
 //    }
 
-    return 0;
+    return retorno;
 }
 
