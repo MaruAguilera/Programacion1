@@ -55,3 +55,12 @@ int controller_count(LinkedList* pArrayList)
 	}
 	return 0;
 }
+
+int controller_filtro(LinkedList* pArrayList){
+
+	if(pArrayList != NULL){
+			printf("\nla lista no es nula");
+			ll_filter(pArrayList, em_calcularDiasCachorros);
+		}
+		return 0;
+}
