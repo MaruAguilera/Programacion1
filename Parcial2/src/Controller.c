@@ -7,7 +7,7 @@
 
 int controller_loadFromText(char* path , LinkedList* pArrayList)
 {
-	char nombreDeArchivo[20];
+	//char nombreDeArchivo[20];
 
 //	("Ingrese el nombre del archivo: ");
 
@@ -15,11 +15,11 @@ int controller_loadFromText(char* path , LinkedList* pArrayList)
     int retorno=-1;
     FILE* pArchivo;
     pArchivo=fopen(path,"r");
-    printf("\nabrio el coso");
+  //  printf("\nabrio el coso");
 
     if(pArchivo!=NULL && parser_EmployeeFromText(pArchivo,pArrayList)==0)
     {
-    	printf("\nNO NULL");
+    	//printf("\nNO NULL");
         retorno=0;
     }
     fclose(pArchivo);
@@ -28,7 +28,7 @@ int controller_loadFromText(char* path , LinkedList* pArrayList)
 
 int controller_listCachorros(LinkedList* pArrayList)
 {
-//	printf("\nCONTROLLER LISTA DE CACHORROS");
+//	printf("\nCONTROLLER LISTA DE CACHORROS") esta asi pq no tiene getter y setter, cambiar
 	Node* nAux = pArrayList->pFirstNode;
 	Cachorro* cachorro = nAux->pElement;
 
@@ -43,7 +43,7 @@ int controller_listCachorros(LinkedList* pArrayList)
 	return 1;
 }
 
-int controller_listCachorrosDias(LinkedList* pArrayList, int dias)
+int controller_listCachorrosDias(LinkedList* pArrayList)
 {
 	printf("\nLISTA DE CACHORROS MENOS A 45 DIAS\n");
 	if(pArrayList != NULL)
@@ -111,6 +111,41 @@ int controller_generarArchivoInformes(char* path, LinkedList* pArrayList)
 	return 0;
 }
 
+int controller_savePerrosAsText(FILE* pFile , LinkedList* pListaPerros) {
+    int ret = 0;
+	Cachorro* auxPerro;
+    int auxId;
+    char auxNombre[4096];
+    int auxDias;
+    char auxRaza[4096];
+	char auxReservado[4096];
+	char auxSexo[4096];
+    int i, len;
+
+    if(pListaPerros != NULL && pFile != NULL) {
+    	fprintf(pFile,"id,nombre,dias,raza,reservado,sexo\n");
+    	len = ll_len(pListaPerros);
+
+    	for(i = 0; i < len; i++) {
+    		auxPerro = (Cachorro*)ll_get(pListaPerros, i);
+    		Cachorros_getId(auxPerro, &auxId);
+    		Cachorros_getNombre(auxPerro, auxNombre);
+    		Cachorros_getDias(auxPerro, &auxDias);
+    		Cachorros_getRaza(auxPerro, auxRaza);
+    		Cachorros_getReservado(auxPerro, auxReservado);
+    		Cachorros_Genero(auxPerro, auxSexo);
+
+
+    		fprintf(pFile,"%d,%s,%d,%s,%s,%s\n", auxId, auxNombre, auxDias, auxRaza, auxReservado, auxSexo);
+    		ret++;
+    	}
+	fclose(pFile);
+    }
+    return ret;
+}
+
+
+
 int controller_count(LinkedList* pArrayList)
 {
 	printf("\nEN EL CONTROLER COUNT");
@@ -121,4 +156,20 @@ int controller_count(LinkedList* pArrayList)
 		printf("\nTOALES: %d", cantidadDeFotosTotales);
 	}
 	return 0;
+}
+int controller_saveAsText(char* fileName,LinkedList* listaPerros) {
+	FILE*pArchivo;
+	int retorno = -1;
+
+	    if(fileName != NULL && listaPerros != NULL) {
+	        pArchivo=fopen(fileName,"w");
+	        if(pArchivo != NULL && controller_savePerrosAsText(pArchivo,listaPerros)) {
+	            //fclose(pArchivo);
+	            printf("\nGuardado exitoso en Texto");
+	            retorno = 0;
+	        } else {
+	            printf("\nNo se pudo abrir el archivo");
+	        }
+	    }
+	    return retorno;
 }

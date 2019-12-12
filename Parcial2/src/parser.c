@@ -9,7 +9,7 @@
  *
  * \param path char*
  * \param pArrayListEmployee LinkedList*
- * \return int
+ * \return intc
  *
  */
 int parser_EmployeeFromText(FILE* pFile , LinkedList* pArrayListCachorros)

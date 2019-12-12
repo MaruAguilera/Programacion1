@@ -25,19 +25,19 @@ endif
 # Add inputs and outputs from these tool invocations to the build variables 
 
 # All Target
-all: likedList
+all: TrabajoPracticoN4
 
 # Tool invocations
-likedList: $(OBJS) $(USER_OBJS)
+TrabajoPracticoN4: $(OBJS) $(USER_OBJS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: GCC C Linker'
-	gcc  -o "likedList" $(OBJS) $(USER_OBJS) $(LIBS)
+	gcc  -o "TrabajoPracticoN4" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) $(EXECUTABLES)$(OBJS)$(C_DEPS) likedList
+	-$(RM) $(EXECUTABLES)$(OBJS)$(C_DEPS) TrabajoPracticoN4
 	-@echo ' '
 
 .PHONY: all clean dependents

@@ -20,7 +20,7 @@ int main(void) {
 	int opcionMenu;
 	int salir = 0;
 	LinkedList* listaCachorros = ll_newLinkedList();
-
+	LinkedList* listaPerrosFiltrados = ll_newLinkedList();
 	do
 	{
 		menu(&opcionMenu);
@@ -30,9 +30,21 @@ int main(void) {
 				break;
 			case 2: controller_listCachorros(listaCachorros);
 				break;
-			case 3: controller_listCachorrosCallejeros(listaCachorros);
+			case 3:
+				listaPerrosFiltrados = ll_filter(listaCachorros,cachorros_dias);
+				                    printf("Calculando\n");
+
+				                    if(listaPerrosFiltrados != NULL) {
+										if(controller_saveAsText("/home/marisa/nuevoRepo/Programacion1/Parcial2/src/menosDe45Dias.csv",listaPerrosFiltrados) == 0) {
+											printf("\nArchivo generado correctamente\n");
+										} else {
+											printf("Error generando archivo\n");
+										}
+				                    }
+
+				//controller_listCachorrosCallejeros(listaCachorros);
 				break;
-			case 4: controller_listCachorrosDias(listaCachorros, 45);
+			case 4: controller_listCachorrosDias(listaCachorros);
 				break;
 			case 5: controller_listCachorrosMachos(listaCachorros);
 				break;
