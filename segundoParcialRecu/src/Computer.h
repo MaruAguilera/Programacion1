@@ -6,3 +6,6 @@ typedef struct{
 	char oferta[50];
 
 }Computadora;
+
+
+int compu_order(void* this, void* thisMasUno);

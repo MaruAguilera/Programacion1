@@ -159,16 +159,30 @@ int Computadora_getOferta(Computadora* this,char* oferta)
     return retorno;
 }
 
+int compu_order(void* this, void* thisMasUno)
+{
+	int retorno = 0;
+	Computadora* order;
+	Computadora* orderMasUno;
+	order = (Computadora*) this;
+	orderMasUno = (Computadora*) thisMasUno;
 
+	if(this != NULL && thisMasUno != NULL && (order->idTipo > orderMasUno->idTipo))
+	{
+		retorno = 1;
+	}
 
-/**int em_calcularDiasCachorros(void* this)
+	return retorno;
+}
+
+int em_calculartipoId(void* this)
  {
 	int retorno=-1;
-	int dias;
+	int idTipo;
 
 	// recibo elemento empleado como void.
-	Cachorros_getDias(this, &dias);
-	if (dias < 45)
+	Computadora_getIdTipo(this, &idTipo);
+	if (idTipo==1)
 	{
 		retorno = 0;
 	}
@@ -177,4 +191,4 @@ int Computadora_getOferta(Computadora* this,char* oferta)
 	}
 	return retorno;
 }
-*/
+

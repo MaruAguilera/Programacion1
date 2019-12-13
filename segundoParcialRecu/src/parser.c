@@ -28,11 +28,11 @@ int parser_CompuFromText(FILE* pFile , LinkedList* pArrayList)
 
     while(feof(pFile)==0)
     {
-        if (fscanf(pFile,"%[^,],%[^,],%[^,],%[^,],%[^\n]\n",bufferID,bufferDescripcion,bufferprecio,bufferIdTipo,bufferOferta)==5)
+        if (fscanf(pFile,"%[^,],%[^,],%[^,],%[^\n]\n",bufferID,bufferDescripcion,bufferprecio,bufferIdTipo)==5)
         {
 
 
-        	auxiliarPunteroComputadora = Computadora_newConParametros(atoi(bufferID),bufferDescripcion,atoi(bufferprecio),atoi(bufferIdTipo),bufferOferta);
+        	auxiliarPunteroComputadora = Computadora_newConParametros(atoi(bufferID),bufferDescripcion,atoi(bufferprecio),atoi(bufferIdTipo));
             count++;
 
             {
