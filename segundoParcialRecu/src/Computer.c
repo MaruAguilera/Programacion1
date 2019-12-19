@@ -1,4 +1,4 @@
-#include <stdio.h>
+	#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include "utn.h"
@@ -7,7 +7,8 @@
 
 Computadora* computadora_new()
 {
-	return (Computadora*)malloc(sizeof(Computadora));
+
+	//return (Computadora*)malloc(sizeof(Computadora));
 	Computadora* this;
     this=malloc(sizeof(Computadora));
     return this;
@@ -18,24 +19,22 @@ void Computadora_delete(Computadora* this)
     free(this);
 }
 
-Computadora* Computadora_newConParametros(int id,char* descripcion,int precio,int idTipo, char* oferta)
+Computadora* Computadora_newConParametros(char* idStr, char* descripcionStr, char* precioStr, char* idTipoStr, char* ofertaStr)
 {
-	Computadora*pCompu=NULL;
-    pCompu=computadora_new();
+	Computadora* pEcomputer=NULL;
+	int id = atoi(idStr); // viene en string por el parceo convierto a int
+	int precio = atoi(precioStr);
+	int idTipo = atoi(idTipoStr);
 
-    if(pCompu==NULL ||
-    Computadora_setId(pCompu,id)||
-	Computadora_descripcion(pCompu,descripcion)||
-	Computadora_setPrecio(pCompu,precio) ||
-	Computadora_setIdTipo(pCompu,idTipo)||
-	Computadora_setOferta(pCompu,oferta))
+	pEcomputer = computadora_new();
 
-    {
-    	Computadora_delete(pCompu);
-        pCompu=NULL;
-    }
+	pEcomputer->id = id;
+	strcpy(pEcomputer->descripcion, descripcionStr);
+	pEcomputer->precio = precio;
+	pEcomputer->idTipo = idTipo;
+	strcpy(pEcomputer->oferta, ofertaStr);
 
-    return pCompu;
+	return pEcomputer;
 }
 
 int Computadora_setId(Computadora* this,int id)
@@ -161,6 +160,7 @@ int Computadora_getOferta(Computadora* this,char* oferta)
 
 int compu_order(void* this, void* thisMasUno)
 {
+	printf("entra en la funcion order");
 	int retorno = 0;
 	Computadora* order;
 	Computadora* orderMasUno;

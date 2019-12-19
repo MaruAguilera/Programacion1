@@ -12,7 +12,7 @@ int controller_loadFromText(char* path , LinkedList* pArrayList)
     pArchivo=fopen(path,"r");
     printf("\nabrio el coso");
 
-    if(pArchivo!=NULL && parser_CompuFromText(pArchivo,pArrayList)==0)
+    if( parser_eComputerFromText(pArchivo,pArrayList && pArchivo!=NULL )==0)
     {
     	printf("\nNO NULL");
         retorno=0;
@@ -64,12 +64,6 @@ int controller_imprimerCompu(LinkedList* pArrayList)
                     		Computadora_getIdTipo(pEmployeeAuxiliar,&idTipoAux);
                     		//Computadora_getOferta(pEmployeeAuxiliar,&ofertaAux);
 
-                    		if (idTipoAux==1) {
-
-								char idTipoAux="DESKTOP";
-							}else{
-								char idTipoAux="LAPTOP";
-							}
 
 
                             printf("\n%d -- %s -- %d-- %d -- \n",idAuxiliar,descripcionAux,precioAux,idTipoAux);
@@ -81,14 +75,6 @@ int controller_imprimerCompu(LinkedList* pArrayList)
     return retorno;
 }
 
-int controller_listCompus(LinkedList* pArrayList)
-{
-	printf("\nLISTA DEsktop DIAS\n");
-	if(pArrayList != NULL)
-	{
-		controller_listCachorros(ll_filter(pArrayList, em_calculartipoId));
-	}
-	return 0;
-}
+
 
 

@@ -4,48 +4,31 @@
 #include "Computer.h"
 #include "parser.h"
 
-
-/** \brief Parsea los datos los datos de los empleados desde el archivo data.csv (modo texto).
- *
- * \param path char*
- * \param pArrayListEmployee LinkedList*
- * \return int
- *
- */
-int parser_CompuFromText(FILE* pFile , LinkedList* pArrayList)
+int parser_eComputerFromText(FILE* pFile , LinkedList* pArrayListeComputer)
 {
 	printf("\nEntro al parser");
     int retorno=-1;
 
-    char bufferID[20];
-    char bufferDescripcion[20];
-    char bufferprecio[20];
+    char bufferID_Computer[20];
+    char bufferDescription[20];
+    char bufferPrecio[20];
     char bufferIdTipo[20];
     char bufferOferta[20];
-
     int count = 0;
-    Computadora* auxiliarPunteroComputadora;
+    Computadora* auxiliarPunteroEcomputer;
 
     while(feof(pFile)==0)
     {
-        if (fscanf(pFile,"%[^,],%[^,],%[^,],%[^\n]\n",bufferID,bufferDescripcion,bufferprecio,bufferIdTipo)==5)
+        if (fscanf(pFile,"%[^,],%[^,],%[^,],%[^,],%[^\n]\n",bufferID_Computer,bufferDescription,bufferPrecio,bufferIdTipo,bufferOferta)==5)
         {
-
-
-        	auxiliarPunteroComputadora = Computadora_newConParametros(atoi(bufferID),bufferDescripcion,atoi(bufferprecio),atoi(bufferIdTipo));
+        	if(count > 0) {
+        		auxiliarPunteroEcomputer = Computadora_newConParametros(bufferID_Computer, bufferDescription, bufferPrecio, bufferIdTipo, bufferOferta);
+        		ll_add(pArrayListeComputer,auxiliarPunteroEcomputer);
+        		retorno=0;
+        	}
             count++;
-
-            {
-            	 //printf("llego hasta aca");
-                ll_add(pArrayList,auxiliarPunteroComputadora);
-                retorno=0;
-
-            }
-
         }
-
     }
-    printf("%d",retorno);
     return retorno;
 }
 

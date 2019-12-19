@@ -1,1 +1,1 @@
-int parser_PuppyFromText(FILE* pFile , LinkedList* pArrayListEmployee);
+int parser_CompuFromText(FILE* pFile , LinkedList* pArrayList);

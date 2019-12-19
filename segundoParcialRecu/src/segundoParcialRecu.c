@@ -40,10 +40,12 @@ int main(void) {
 		switch(opcion)
 		{
 			case 1:
-				controller_loadFromText("datos_Fin.csv",listaComputadoras);
-
-
-				//controller_loadFromText("/home/alumno/Documentos/Marisa/segundoParcialRecu/datos_Fin.csv",listaComputadoras);
+				if(controller_loadFromText("/home/marisa/nuevoRepo/Programacion1/segundoParcialRecu/datos_Fin.csv",listaComputadoras)==0)
+				{
+					printf("se abrio el archivo");
+				}else{
+					printf("errors");
+				}
 				break;
 			case 2:
 				controller_order(listaComputadoras);
@@ -53,10 +55,10 @@ int main(void) {
 				 controller_imprimerCompu(listaComputadoras);
 				break;
 			case 4:
-				controller_listCompus(listaComputadoras);
+				//controller_listCompus(listaComputadoras);
 				break;
 			case 5:
-				listaFiltrados = ll_filter(listaComputadoras,em_calculartipoId);
+				/**listaFiltrados = ll_filter(listaComputadoras,em_calculartipoId);
 				                    printf("Calculando\n");
 
 				                    if(listaFiltrados != NULL) {
@@ -66,7 +68,7 @@ int main(void) {
 											printf("Error generando archivo\n");
 										}
 				                    }
-
+*/
 				break;
 
 		}
